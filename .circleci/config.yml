@@ -5,7 +5,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: sprax/diccid-kid-a:0.0.1
+      - image: sprax/diccid-kid-a:0.0.2
 
     # working_directory: ~/asdf/ccicpp
 

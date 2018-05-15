@@ -1,7 +1,10 @@
 # sprax's public Docker file for testing stuff built on C++
+# NOTE: build-essential contains: dpkg-dev, g++, gcc, libc6-dev, and make.
+# Pushed to Docker Hub as sprax/diccid-kid-a:0.0.2
 FROM ubuntu:16.04
 RUN apt-get update -qq \
   && apt-get install -qy --no-install-recommends \
+    build-essential \
     ca-certificates \
     cmake \
     coinor-libclp-dev \
@@ -25,11 +28,9 @@ RUN apt-get update -qq \
     libxml2-dev \
     libxt-dev \
     libyaml-cpp-dev \
-    make \
     openssh-client \
     protobuf-compiler \
     wget \
   && rm -rf /var/lib/apt/lists/*
 RUN wget -O drake.tar.gz https://drake-packages.csail.mit.edu/drake/nightly/drake-latest-xenial.tar.gz
 RUN tar -xf drake.tar.gz -C /opt
-
