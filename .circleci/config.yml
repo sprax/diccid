@@ -1,0 +1,26 @@
+# diccid/.circleci/config.yml
+---
+version: 2
+
+jobs:
+  build:
+    docker:
+      - image: sprax/diccid-kid-a:0.0.1
+
+    # working_directory: ~/asdf/ccicpp
+
+    steps:
+      - run:
+          name: setup
+          command: |
+            echo "In setup..."
+            ls -lahFG
+
+      - checkout
+
+      - run:
+          name: build and test
+          command: |
+            echo "In build and test..."
+            cd src && g++ -std=c++11  main.cpp -o main && ./main
+            mkdir build && cd build && cmake .. && make -j && make test

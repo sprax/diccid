@@ -1,0 +1,32 @@
+
+machine:
+  timezone:
+    America/New_York
+  environment:
+    PATH: "/home/ubuntu/cmake-3.6.2-Linux-x86_64/bin:$PATH"
+
+dependencies:
+  pre:
+    - cd external/gtest-1.7.0/googletest/; mkdir build; cd build; cmake ..; make
+  cache_directories:
+    - ~/cmake-3.6.2-Linux-x86_64
+  override:
+    - >
+      if [ ! -d ~/cmake-3.6.2-Linux-x86_64 ]; then
+        echo "No cache - building CMake"
+        cd ~ && wget --quiet https://cmake.org/files/v3.6/cmake-3.6.2-Linux-x86_64.tar.gz && tar -xvf cmake-3.6.2-Linux-x86_64.tar.gz
+      else
+        echo "Cached CMake found"
+      fi
+    - cd make; make; make test
+
+compile:
+  source setup.sh
+
+test:
+  override:
+    - cd bin; ./gtest_myint
+checkout:
+  post:
+    - git submodule init
+    - git submodule update
