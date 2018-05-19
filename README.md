@@ -1,4 +1,4 @@
-Testing circleci for C++ projects
-=================================
+Docker Image Circle CI for Development in C++.
+==============================================
 
-ccicpp [![CircleCI](https://circleci.com/gh/sprax/ccicpp.svg?style=svg)](https://circleci.com/gh/sprax/ccicpp)
+CircleCI [![CircleCI](https://circleci.com/gh/sprax/diccid.svg?style=svg)](https://circleci.com/gh/sprax/diccid)
