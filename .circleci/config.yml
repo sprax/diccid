@@ -5,7 +5,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: sprax/diccid-kid-a:0.0.4
+      - image: sprax/diccid-kid-a:0.0.6
 
     # working_directory: ~/asdf/ccicpp
 
@@ -24,4 +24,4 @@ jobs:
             echo "In build and test..."
             cd src && g++ -std=c++11  main.cpp -o main && ./main
             cd ..
-            mkdir build && cd build && cmake .. && make -j && make test
+            ./setup.sh
