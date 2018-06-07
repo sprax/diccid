@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(stuff_getter)
+project(diccid)
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 include(${CMAKE_ROOT}/Modules/ExternalProject.cmake)
 
 # Download and unpack googletest at configure time
-configure_file(CMakeLists.gtest.txt googletest-download/CMakeLists.txt)
+configure_file(CMakeLists.txt.gtest googletest-download/CMakeLists.txt)
 execute_process(COMMAND ${CMAKE_COMMAND} -G "${CMAKE_GENERATOR}" .
   RESULT_VARIABLE result
   WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/googletest-download )
@@ -36,6 +36,7 @@ add_subdirectory(${CMAKE_BINARY_DIR}/googletest-src
 
 add_executable(main src/main.cpp)
 add_executable(cli src/cli.cpp)
+add_executable(cppc src/cppc.cpp)
 
 #-------------------
 # Unit Testing
@@ -51,5 +52,5 @@ foreach(_file ${GTEST_SRC_FILES})
     add_executable(${_name} ${_file})
     target_link_libraries(${_name} gtest gtest_main ${CMAKE_THREAD_LIBS_INIT})
     add_test(${_name} ${_name})
-    set_tests_properties(${_name} PROPERTIES TIMEOUT 70)
+    set_tests_properties(${_name} PROPERTIES TIMEOUT 10)
 endforeach()
