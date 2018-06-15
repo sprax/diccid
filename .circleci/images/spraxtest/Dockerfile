@@ -11,6 +11,7 @@ RUN apt-get update -qq \
     coinor-libipopt-dev \
     freeglut3-dev \
     git \
+    libccd-dev \
     libeigen3-dev \
     libpcl-dev \
     libgtest-dev \
@@ -33,6 +34,7 @@ RUN apt-get update -qq \
     python-pip \
     python2.7 \
     python2.7-dev \
+    vim \
     wget \
   && rm -rf /var/lib/apt/lists/*
 RUN wget -O drake.tar.gz https://drake-packages.csail.mit.edu/drake/nightly/drake-latest-xenial.tar.gz

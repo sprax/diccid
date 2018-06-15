@@ -7,7 +7,6 @@
 
 #include <algorithm>
 #include <chrono>
-#include <functional>
 #include <iostream>
 #include <iterator>
 #include <list>
@@ -18,8 +17,8 @@
 #include <stdlib.h>
 #include <string>
 #include <typeinfo>
-#include <unordered_map>
-#include <unordered_set>
+// #include <unordered_map>
+// #include <unordered_set>
 #include <vector>
 
 using std::cin;
