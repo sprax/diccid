@@ -1,6 +1,6 @@
 # sprax's public Docker file for testing stuff built on C++
 # NOTE: build-essential contains: dpkg-dev, g++, gcc, libc6-dev, and make.
-# Pushed to Docker Hub as sprax/diccid-kid-a:0.0.2
+# Pushed to Docker Hub as sprax/diccid-kid-a:0.0.7
 FROM ubuntu:16.04
 RUN apt-get update -qq \
   && apt-get install -qy --no-install-recommends \
