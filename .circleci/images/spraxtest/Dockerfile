@@ -37,14 +37,15 @@ RUN apt-get update -qq \
     vim \
     wget \
   && rm -rf /var/lib/apt/lists/*
-RUN wget -O drake.tar.gz https://drake-packages.csail.mit.edu/drake/nightly/drake-latest-xenial.tar.gz
-RUN tar -xf drake.tar.gz -C /opt
+# RUN wget -O drake.tar.gz https://drake-packages.csail.mit.edu/drake/nightly/drake-latest-xenial.tar.gz
+# RUN tar -xf drake.tar.gz -C /opt
 # RUN git clone https://github.com/RobotLocomotion/drake.git
 # RUN cp -r drake/examples/* /opt/drake/include/drake/examples
 # RUN wget https://ompl.kavrakilab.org/install-ompl-ubuntu.sh
 COPY install-ompl-ubuntu-1.3.2.sh /
-# RUN chmod u+x install-ompl-ubuntu-1.3.2.sh
-SHELL ["/bin/bash", "-lc"]
-RUN ./install-ompl-ubuntu-1.3.2.sh --python
+RUN chmod u+x install-ompl-ubuntu-1.3.2.sh
+COPY build/ /opt/drake/
+# SHELL ["/bin/bash", "-lc"]
+# RUN ./install-ompl-ubuntu-1.3.2.sh --python
 RUN ldconfig
 RUN echo "DONE installing packages into docker image"
