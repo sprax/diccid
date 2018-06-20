@@ -1,5 +1,7 @@
 #!/usr/bin/sh 
 # @file: release.sh
+# 
+# See: https://medium.com/travis-on-docker/how-to-version-your-docker-images-1d5c577ebf54
 
 set -ex
 # SET THE FOLLOWING VARIABLES
