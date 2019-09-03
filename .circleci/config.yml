@@ -9,7 +9,7 @@ description: 'Use to skip CI when PR title contains "[wip]", "[skip ci]", "[ci s
 commands:
   check-skippable-pr:
     steps:
-      - run: apk add --no-cache bash curl jq
+      # - run: apk add --no-cache bash curl jq
       - run:
           shell: /bin/bash
           name: Check skippable PR
@@ -83,7 +83,7 @@ commands:
 
   check-skippable-commit:
     steps:
-      - run: apk add --no-cache bash curl jq
+      # - run: apk add --no-cache bash curl jq
       - run:
           shell: /bin/bash
           name: Check skippable commit
