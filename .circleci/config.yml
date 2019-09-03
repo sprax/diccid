@@ -9,9 +9,8 @@ jobs:
     docker:
       - image: sprax/diccid-kid-a:0.0.6
 
-    # working_directory: ~/asdf/ccicpp
-
     steps:
+      - check-skippable-pr
       - run:
           name: setup
           command: |
