@@ -1,6 +1,8 @@
 # diccid/.circleci/config.yml
 ---
-version: 2
+version: 2.1
+orbs:
+  skip-wip-ci: artsy/skip-wip-ci@0.3.0
 
 jobs:
   build:
