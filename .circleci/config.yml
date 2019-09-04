@@ -15,11 +15,10 @@ commands:
           name: Check skippable PR
           command: |
             required_env_vars=(
-              # "GITHUB_TOKEN"
+              # "CIRCLE_PR_NUMBER"
+              "CIRCLE_PROJECT_REPONAME"
               "CIRCLE_PROJECT_USERNAME"
-              "CIRCLE_PR_REPONAME"
-              "CIRCLE_PR_NUMBER"
-              "CIRCLE_TOKEN"
+              # "CIRCLE_TOKEN"
               "CIRCLE_BUILD_NUM"
             )
 
@@ -34,7 +33,8 @@ commands:
             token=$(printf "${GITHUB_TOKEN}" | cut -d':' -f1)
 
             headers="Authorization: token $token"
-            api_endpoint="https://api.github.com/repos/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PR_REPONAME}/pulls/${CIRCLE_PR_NUMBER}"
+            # api_endpoint="https://api.github.com/repos/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}/pulls/${CIRCLE_PR_NUMBER}"
+            api_endpoint="https://api.github.com/repos/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}/pulls/2"
 
             # Fetch PR metadata from Github's API and parse fields from json
             github_res=$(curl --silent --header "${headers}" "${api_endpoint}" | jq '{mergeable_state: .mergeable_state, title: .title}')
