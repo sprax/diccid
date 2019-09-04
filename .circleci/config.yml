@@ -12,6 +12,7 @@ commands:
       - run:
           name: install prereqs
           command: |
+            apt-get update -qq
             apt-get install -qy --fix-missing curl jq
 
       - run:
