@@ -162,18 +162,17 @@ jobs:
           command: |
             echo "In setup..."
             ls -lahFG
+            echo "In checkout: CIRCLE_PULL_REQUESTS: ${CIRCLE_PULL_REQUESTS}"
+            echo "In checkout: GIT_API_PR_IS_DRAFT: ${GIT_API_PR_IS_DRAFT}"
 
       - checkout
-          - run:
-              command: |
-                echo "In checkout . . ."
-                echo "In checkout: CIRCLE_PULL_REQUESTS: ${CIRCLE_PULL_REQUESTS}"
-                echo "In checkout: GIT_API_PR_IS_DRAFT: ${GIT_API_PR_IS_DRAFT}"
 
       - run:
           name: build and test
           command: |
-            echo "In build and test..."
+            echo "In build and test (BaT) . . ."
+            echo "In BaT: CIRCLE_PULL_REQUESTS: ${CIRCLE_PULL_REQUESTS}"
+            echo "In BaT: GIT_API_PR_IS_DRAFT: ${GIT_API_PR_IS_DRAFT}"
             cd src && g++ -std=c++11  main.cpp -o main && ./main
             cd ..
             ./setup.sh
