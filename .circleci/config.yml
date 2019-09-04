@@ -158,7 +158,7 @@ jobs:
     steps:
       - check-skippable-pr
       - run: |
-        echo "In checkout: GIT_API_MERGEABLE_STATE: ${GIT_API_MERGEABLE_STATE}"
+        # echo "In checkout: GIT_API_MERGEABLE_STATE: ${GIT_API_MERGEABLE_STATE}"
         if [ "$GIT_API_MERGEABLE_STATE" = "draft" ]; then
             circleci-agent step halt
         fi
@@ -167,8 +167,8 @@ jobs:
           command: |
             echo "In setup..."
             ls -lahFG
-            echo "In checkout: CIRCLE_PULL_REQUESTS: ${CIRCLE_PULL_REQUESTS}"
-            echo "In checkout: GIT_API_MERGEABLE_STATE: ${GIT_API_MERGEABLE_STATE}"
+            echo "In setup: CIRCLE_PULL_REQUESTS: ${CIRCLE_PULL_REQUESTS}"
+            echo "In setup: GIT_API_MERGEABLE_STATE: ${GIT_API_MERGEABLE_STATE}"
 
       - checkout
 
