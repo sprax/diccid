@@ -157,11 +157,13 @@ jobs:
       - image: sprax/diccid-kid-a:0.0.6
     steps:
       - check-skippable-pr
-      - run: |
-        # echo "In checkout: GIT_API_MERGEABLE_STATE: ${GIT_API_MERGEABLE_STATE}"
-        if [ "$GIT_API_MERGEABLE_STATE" = "draft" ]; then
-            circleci-agent step halt
-        fi
+      - run:
+        name: pre-setup
+        command: |
+          echo "In checkout: GIT_API_MERGEABLE_STATE: ${GIT_API_MERGEABLE_STATE}"
+          if [ "$GIT_API_MERGEABLE_STATE" = "draft" ]; then
+              circleci-agent step halt
+          fi
       - run:
           name: setup
           command: |
