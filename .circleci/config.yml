@@ -59,9 +59,9 @@ commands:
             cancel_running_jobs=0
 
             if [[ "${mergeable_state}" == "\"draft\"" ]]; then
-              printf "PR is a draft, skipping CI!\n"
+              printf "Pull Request is a draft, skipping CI!\n"
               cancel_running_jobs=1
-              echo "export GIT_API_PR_IS_DRAFT=true" >> $BASH_ENV
+              echo "export GIT_API_MERGEABLE_STATE=draft" >> $BASH_ENV
             fi
 
             for skip_token in '[skip ci]' '[ci skip]' '[wip]'; do
@@ -157,13 +157,18 @@ jobs:
       - image: sprax/diccid-kid-a:0.0.6
     steps:
       - check-skippable-pr
+      - run: |
+        echo "In checkout: GIT_API_MERGEABLE_STATE: ${GIT_API_MERGEABLE_STATE}"
+        if [ "$GIT_API_MERGEABLE_STATE" = "draft" ]; then
+            circleci-agent step halt
+        fi
       - run:
           name: setup
           command: |
             echo "In setup..."
             ls -lahFG
             echo "In checkout: CIRCLE_PULL_REQUESTS: ${CIRCLE_PULL_REQUESTS}"
-            echo "In checkout: GIT_API_PR_IS_DRAFT: ${GIT_API_PR_IS_DRAFT}"
+            echo "In checkout: GIT_API_MERGEABLE_STATE: ${GIT_API_MERGEABLE_STATE}"
 
       - checkout
 
@@ -172,7 +177,7 @@ jobs:
           command: |
             echo "In build and test (BaT) . . ."
             echo "In BaT: CIRCLE_PULL_REQUESTS: ${CIRCLE_PULL_REQUESTS}"
-            echo "In BaT: GIT_API_PR_IS_DRAFT: ${GIT_API_PR_IS_DRAFT}"
+            echo "In BaT: GIT_API_MERGEABLE_STATE: ${GIT_API_MERGEABLE_STATE}"
             cd src && g++ -std=c++11  main.cpp -o main && ./main
             cd ..
             ./setup.sh
