@@ -15,7 +15,7 @@ commands:
           name: Check skippable PR
           command: |
             required_env_vars=(
-              "GITHUB_TOKEN"
+              # "GITHUB_TOKEN"
               "CIRCLE_PROJECT_USERNAME"
               "CIRCLE_PR_REPONAME"
               "CIRCLE_PR_NUMBER"
