@@ -164,10 +164,11 @@ jobs:
             ls -lahFG
 
       - checkout
-          command: |
-            echo "In checkout . . ."
-            echo "In checkout: CIRCLE_PULL_REQUESTS: ${CIRCLE_PULL_REQUESTS}"
-            echo "In checkout: GIT_API_PR_IS_DRAFT: ${GIT_API_PR_IS_DRAFT}"
+          - run:
+              command: |
+                echo "In checkout . . ."
+                echo "In checkout: CIRCLE_PULL_REQUESTS: ${CIRCLE_PULL_REQUESTS}"
+                echo "In checkout: GIT_API_PR_IS_DRAFT: ${GIT_API_PR_IS_DRAFT}"
 
       - run:
           name: build and test
