@@ -34,18 +34,19 @@ commands:
               fi
             done
 
-            # Since we're piggybacking off of an existing OAuth var, tweak the var for our uses
+            ### Since we're piggybacking off of an existing OAuth var, tweak the var for our uses
             token=$(printf "${GITHUB_TOKEN}" | cut -d':' -f1)
 
             headers="Authorization: token $token"
             # api_endpoint="https://api.github.com/repos/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}/pulls/${CIRCLE_PR_NUMBER}"
             api_endpoint="https://api.github.com/repos/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}/pulls/2"
 
-            # Fetch PR metadata from Github's API and parse fields from json
-            github_res=$(curl --silent --header "${headers}" "${api_endpoint}" | jq '{mergeable_state: .mergeable_state, title: .title}')
+            ### Fetch PR metadata from Github's API and parse fields from json
+            # github_res=$(curl --silent --header "${headers}" "${api_endpoint}" | jq '{mergeable_state: .mergeable_state, title: .title}')
+            github_res=$(curl --silent "${api_endpoint}" | jq '{mergeable_state: .mergeable_state, title: .title}')
             mergeable_state=$(printf "${github_res}" | jq '.mergeable_state')
             title=$(printf "${github_res}" | jq '.title' | tr '[:upper:]' '[:lower:]')
-            echo "${title}"
+            echo "title: ${title}"
 
             if [[ "${title}" == "null" && "${mergeable_state}" == "null" ]]; then
               printf "Couldn't fetch info on PR, but that doesn't mean we should skip CI.\n"
@@ -115,7 +116,7 @@ commands:
             headers="Authorization: token $token"
             api_endpoint="https://api.github.com/repos/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PR_REPONAME}/git/commits/${CIRCLE_SHA1}"
 
-            # Fetch last commit message from github using git SHA
+            ### Fetch last commit message from github using git SHA
             last_commit_message=$(curl --silent --header "${headers}" "${api_endpoint}" | jq '.message')
 
             for skip_token in '[skip ci]' '[ci skip]' '[wip]'; do
