@@ -167,12 +167,12 @@ jobs:
           command: |
             echo "In pre-setup: GIT_API_MERGEABLE_STATE: ${GIT_API_MERGEABLE_STATE}"
             if [ "$GIT_API_MERGEABLE_STATE" = "draft" ]; then
-              echo "Halting the job early -- status = SUCCESS -- because PR/mergeable_state = draft"
+              echo "Halting the job early -- status: SUCCESS -- because PR/mergeable_state = draft"
               circleci-agent step halt
             fi
             if (( ${#GIT_API_SKIP_TOKEN} > 3 )); then
-              echo "Halting the job early -- with status = FAILURE -- because PR title contains \"${GIT_API_SKIP_TOKEN}\""
-              circleci-agent step halt
+              echo "Halting the job early -- status: FAILURE -- because PR title contains \"${GIT_API_SKIP_TOKEN}\""
+              circleci-agent step fail
               exit 1
               return 1
             fi
