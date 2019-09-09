@@ -42,7 +42,11 @@ commands:
 
             headers="Authorization: token $token"
             # api_endpoint="https://api.github.com/repos/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}/pulls/${CIRCLE_PR_NUMBER}"
-            api_endpoint="https://api.github.com/repos/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}/pulls/2"
+            api_pull_req=`(echo $CIRCLE_PULL_REQUEST | sed 's/github.com/api.github.com\/repos/')`
+            api_endpoint=`(echo $api_pull_req | sed 's/\/pull\//\/pulls\//')`
+            echo "CIRCLE_PULL_REQUEST: ${CIRCLE_PULL_REQUEST}"
+            echo "Subbed api_pull_req: ${api_pull_req}"
+            echo "Plural api_endpoint: ${api_endpoint}"
 
             ### Fetch PR metadata from Github's API and parse fields from json
             # github_res=$(curl --silent --header "${headers}" "${api_endpoint}" | jq '{mergeable_state: .mergeable_state, title: .title}')
