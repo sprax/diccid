@@ -10,3 +10,9 @@ CircleCI [![CircleCI](https://circleci.com/gh/sprax/diccid.svg?style=svg)](https
 2. If you must change the cloned repo and don't have access rights to push up a branch, fork it and go back to 1.
 3. Clone, check out, merge or rebase inside the docker only if you cannot build the repo outside the docker.
 4. Prefer a chain of docker images over (3) -- copy, build, push in Docker A, retrieve outside docker, copy into Docker B.
+
+## Testing CircleCI commands
+- `circleci-agent step halt` yields success
+- `circleci-agent step fail` does not exist
+- Looking for way to make use `https://circleci.com/api/v1.1/project/github/` to **cancel** a running job, not fail it.
+- Looking for more triggers to **skip** a job, rather than fail or cancel it. 
