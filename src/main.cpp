@@ -8,5 +8,6 @@ int main(int argc, char **argv)
     cout << "Howdy Earth"       << endl;
     cerr << "What up WIP"       << endl;
     cerr << "Hallo, wêreld!" << endl;
-    ////corr << "Zdrasti Orb"       << endl;
+    cerr << "Прывітанне свет (Pryvitannie sviet)" << endl;
+    corr << "Zdrasti Orb"       << endl;
 }

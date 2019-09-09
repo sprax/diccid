@@ -172,7 +172,7 @@ jobs:
             fi
             if (( ${#GIT_API_SKIP_TOKEN} > 3 )); then
               echo "Halting the job early -- status: FAILURE -- because PR title contains \"${GIT_API_SKIP_TOKEN}\""
-              circleci-agent step fail
+              circleci-agent step halt
               exit 1
               return 1
             fi
