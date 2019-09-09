@@ -72,6 +72,7 @@ commands:
               if [[ ${title} == *"${skip_token}"* ]]; then
                 printf "Found \"${skip_token}\" in PR title, skipping CI!\n"
                 cancel_running_jobs=1
+                echo "export GIT_API_SKIP_TOKEN=${skip_token}" >> $BASH_ENV
               fi
             done
 
