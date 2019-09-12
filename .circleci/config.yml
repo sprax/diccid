@@ -193,8 +193,13 @@ jobs:
           name: build and test
           command: |
             echo "In build and test (BaT) . . ."
+            set -e
             echo "In BaT: CIRCLE_PULL_REQUESTS: ${CIRCLE_PULL_REQUESTS}"
             echo "In BaT: GIT_API_MERGEABLE_STATE: ${GIT_API_MERGEABLE_STATE}"
             cd src && g++ -std=c++11  main.cpp -o main && ./main
             cd ..
             ./setup.sh
+
+      - store_artifacts:
+          path: /root/project/build/main
+          destination: main

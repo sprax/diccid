@@ -9,6 +9,6 @@ int main(int argc, char **argv)
     cerr << "What up WIP"       << endl;
     cerr << "Hallo, wêreld!" << endl;
 
-    c3rr << "Прывітанне свет (Pryvitannie sviet)" << endl;
-    corr << "Zdrasti Orb"       << endl;
+    cerr << "Прывітанне свет (Pryvitannie sviet)" << endl;
+    cerr << "Zdrasti Orb"       << endl;
 }
