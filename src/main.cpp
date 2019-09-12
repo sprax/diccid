@@ -10,5 +10,5 @@ int main(int argc, char **argv)
     cerr << "Hallo, wêreld!" << endl;
 
     cerr << "Прывітанне свет (Pryvitannie sviet)" << endl;
-    cerr << "Zdrasti Orb"       << endl;
+    c3rr << "Zdrasti Orb"       << endl;
 }
