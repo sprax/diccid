@@ -177,7 +177,6 @@ jobs:
               echo "Halting the job early -- status: FAILURE -- because PR title contains \"${GIT_API_SKIP_TOKEN}\""
               # circleci-agent step halt
               exit 1
-              # return 1
             fi
       - run:
           name: setup
@@ -199,6 +198,11 @@ jobs:
             cd src && g++ -std=c++11  main.cpp -o main && ./main
             cd ..
             ./setup.sh
+            status=$?
+            echo "status = $status"
+            if (( $status != 0 )); then
+              exit $status
+            fi
 
       - store_artifacts:
           path: /root/project/build/main
