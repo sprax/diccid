@@ -1,7 +1,14 @@
 #include <iostream>
+using namespace std;
 
 int main(int argc, char **argv)
 {
-    std::cerr << "Hello World" << std::endl;
-    std::cout << "Howdy Earth" << std::endl;
+    cerr << "Ahlan bil 'Alam"   << endl;
+    cerr << "Hello World"       << endl;
+    cout << "Howdy Earth"       << endl;
+    cerr << "What up WIP"       << endl;
+    cerr << "Hallo, wêreld!" << endl;
+
+    cerr << "Прывітанне свет (Pryvitannie sviet)" << endl;
+    cerr << "Zdrasti Orb"       << endl;
 }
